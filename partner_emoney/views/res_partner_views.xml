@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © Andhitia Rama <andhitia.r@gmail.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<openerp>
+<data>
+
+<record id="res_partner_form_emoney" model="ir.ui.view">
+    <field name="name">E-money flags addition to res.partner</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//page[@name='sales_purchases']/group/group/field[@name='customer']" position="after">
+                <field name="is_emoney_member"/>
+                <field name="is_emoney_agent"/>
+                <field name="is_emoney_merchant"/>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+<record id="res_partner_form_emoney" model="ir.ui.view">
+    <field name="name">E-money flags addition to res.partner</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_res_partner_filter"/>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter name='emoney_member' string="E-Money Member" domain="[('is_emoney_member','=',1)]"/>
+                <filter name='emoney_agent' string="E-Money Agent" domain="[('is_emoney_agent','=',1)]"/>
+                <filter name='emoney_merchant' string="E-Money Merchant" domain="[('is_emoney_merchant','=',1)]"/>
+            </xpath>
+        </data>
+    </field>
+</record>
+</data>
+</openerp>
